@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.jsx";
+import Main from "../components/Main.jsx";
 ---
 
 <Layout title="Dashboard">
   <main class="min-h-full">
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      <Card />
+      <Main client:load title="Dashboard" description="test dashboard" />
     </div>
   </main>
 </Layout>
