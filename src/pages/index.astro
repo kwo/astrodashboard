@@ -1,12 +1,61 @@
 ---
+import '@tremor/react/dist/esm/tremor.css';
+import { Card, Title, Text, ColGrid, Col, Block, Metric, Flex, ProgressBar } from '@tremor/react';
 import Layout from "../layouts/Layout.astro";
-import Main from "../components/Main.jsx";
+import Chart from '../components/Chart.jsx';
+
+const categories = [
+    {
+        title: 'Sales',
+        metric: '$ 12,699',
+        percentageValue: 15.9,
+        target: '$ 80,000',
+    },
+    {
+        title: 'Profit',
+        metric: '$ 45,564',
+        percentageValue: 36.5,
+        target: '$ 125,000',
+    },
+    {
+        title: 'Customers',
+        metric: '1,072',
+        percentageValue: 53.6,
+        target: '2,000',
+    },
+];
+
 ---
 
 <Layout title="Dashboard">
   <main class="min-h-full">
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      <Main client:load title="Dashboard" description="test dashboard" />
+      <main>
+        <Title>dashboard</Title>
+        <Text>test dashboard</Text>
+
+        <ColGrid numColsLg={ 6 } gapX="gap-x-6" gapY="gap-y-6" marginTop="mt-6">
+            <Col numColSpanLg={ 4 }>
+                <Chart client:load />
+            </Col>
+
+            <Col numColSpanLg={ 2 }>
+                <Block spaceY="space-y-6">
+                    { categories.map((item) => (
+                    <Card>
+                        <Text>{ item.title }</Text>
+                        <Metric>{ item.metric }</Metric>
+                        <Flex marginTop="mt-4">
+                            <Text truncate={ true }>{ `${item.percentageValue}% (${item.metric})` }</Text>
+                            <Text>{ item.target }</Text>
+                        </Flex>
+                        <ProgressBar percentageValue={ item.percentageValue } marginTop="mt-2" />
+                    </Card>
+                )) }
+                </Block>
+            </Col>
+        </ColGrid>
+    </main>
     </div>
   </main>
 </Layout>
