@@ -26,36 +26,26 @@ const categories = [
 ];
 
 ---
+<Layout title="Dashboard" subtitle="test dashboard">
+    <ColGrid numColsLg={ 6 } gapX="gap-x-6" gapY="gap-y-6" marginTop="mt-6">
+        <Col numColSpanLg={ 4 }>
+            <Chart client:load />
+        </Col>
 
-<Layout title="Dashboard">
-  <main class="min-h-full">
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      <main>
-        <Title>dashboard</Title>
-        <Text>test dashboard</Text>
-
-        <ColGrid numColsLg={ 6 } gapX="gap-x-6" gapY="gap-y-6" marginTop="mt-6">
-            <Col numColSpanLg={ 4 }>
-                <Chart client:load />
-            </Col>
-
-            <Col numColSpanLg={ 2 }>
-                <Block spaceY="space-y-6">
-                    { categories.map((item) => (
-                    <Card>
-                        <Text>{ item.title }</Text>
-                        <Metric>{ item.metric }</Metric>
-                        <Flex marginTop="mt-4">
-                            <Text truncate={ true }>{ `${item.percentageValue}% (${item.metric})` }</Text>
-                            <Text>{ item.target }</Text>
-                        </Flex>
-                        <ProgressBar percentageValue={ item.percentageValue } marginTop="mt-2" />
-                    </Card>
-                )) }
-                </Block>
-            </Col>
-        </ColGrid>
-    </main>
-    </div>
-  </main>
+        <Col numColSpanLg={ 2 }>
+            <Block spaceY="space-y-6">
+                { categories.map((item) => (
+                <Card>
+                    <Text>{ item.title }</Text>
+                    <Metric>{ item.metric }</Metric>
+                    <Flex marginTop="mt-4">
+                        <Text truncate={ true }>{ `${item.percentageValue}% (${item.metric})` }</Text>
+                        <Text>{ item.target }</Text>
+                    </Flex>
+                    <ProgressBar percentageValue={ item.percentageValue } marginTop="mt-2" />
+                </Card>
+            )) }
+            </Block>
+        </Col>
+    </ColGrid>
 </Layout>
